@@ -23,7 +23,7 @@ class Send
     private $_emailObject = [
         'email' => 'd0122@aliyun.com',
         'password' => '******',
-        'name' => 'dome100@aliyun',
+        'name' => 'dome100@aliyun',  # 名称
         'smtp_name' => 'aliyun',     # 服务器SMTP
     ];
 
@@ -37,15 +37,48 @@ class Send
     ];
 
     /**
+     * 邮件主题
+     * [$_subject description]
+     * @var string
+     */
+    private $_subject = '';
+
+    /**
+     * 发送邮件模板
+     * [$_emailHtmlView description]
+     * @var [type]
+     */
+    private $_emailHtmlView = __DIR__.'/index.html';
+
+    /**
+     * 抄送
+     * [$_CCEmail description]
+     * @var array
+     */
+    private $_CCEmail = [];
+
+    /**
+     * 密送
+     * [$_BCCEmail description]
+     * @var array
+     */
+    private $_BCCEmail = [];
+
+    /**
+     * 附件
+     * [$_toEmailFiles description]
+     * @var [type]
+     */
+    private $_toEmailFiles = [
+        ['file_path'=> '****','name'=>'***'],
+    ]
+
+    /**
      * 运行邮件发送
      */
     public function run()
     {
-        $email = $this->_emailObject;
-        $toEmail = $this->_toEmailObject;
-        $subject = '【Dome100 官方网站发来的注册邮件】';
-        $msgHTML = __DIR__.'/index.html';
-        $bool = self::send_emailer($email,$toEmail,$subject,$msgHTML);
+        $bool = self::send_emailer($this->_emailObject,$this->_toEmailObject,$this->_subject,$this->_emailHtmlView,$this->_CCEmail,$this->BCCEmail,$this->_toEmailFiles);
         print_r('<pre>');
         print_r($bool);
     }
@@ -133,6 +166,3 @@ class Send
 
 
 }
-
-$send = new Send();
-$send->run();
