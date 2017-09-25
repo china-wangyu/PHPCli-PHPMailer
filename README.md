@@ -26,13 +26,25 @@ PHPcli模块 + PHPMailer
     PHPMailer/PHPMailer.php->getHost();
   
   
-此外建立Send.php 邮件发送类，构建完善发送邮件方法及json返回信息，其中：
+此外建立Send.php 邮件发送类，构建完善发送邮件方法及json返回信息，
+    
+    $send = new Send();  # 实例化Send()类
+    
+    
+    # 设置私有参数
+    
+    
+    send.php->run();   # Send()类运行方法，调用PHPMailer发送邮件
 
+
+    return JSON：
+    
+    
 
 正确
 
 
-     return ['status'=>'Success OK '];   # 成功状态
+    return ['status'=>'Success OK ']; # 成功状态
      
      
 错误
@@ -45,3 +57,6 @@ PHPcli模块 + PHPMailer
 
 
 注：本教程适应新手或刚刚接触不久，或急需PHP做邮件认证的朋友们，大神们别打脸。
+
+
+附: 如果有问题可以在github留言
