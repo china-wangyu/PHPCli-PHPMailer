@@ -5,4 +5,6 @@
  * Date: 2017/9/25
  * Time: 9:41
  */
-exec("G:\php\wamp64\bin\php\php5.6.25\php.exe cli_dome.php");
+$php_exe_path = 'G:\php\wamp64\bin\php\php5.6.25\php.exe';	# php.exe运行文件地址
+$php_cli_run_file = 'cli_dome.php';	# 要运行文件地址
+exec($php_exe_path." ".$php_cli_run_file);
