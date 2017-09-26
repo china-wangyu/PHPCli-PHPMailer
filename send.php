@@ -5,14 +5,11 @@
  * Date: 2017/9/25
  * Time: 9:48
  */
-
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-
 require __DIR__.'/PHPMailer/Exception.php';
 require __DIR__.'/PHPMailer/PHPMailer.php';
 require __DIR__.'/PHPMailer/SMTP.php';
-
 
 class Send
 {
@@ -71,7 +68,7 @@ class Send
      */
     private $_toEmailFiles = [
         ['file_path'=> '****','name'=>'***'],
-    ]
+    ];
 
     /**
      * 运行邮件发送
@@ -82,7 +79,6 @@ class Send
         print_r('<pre>');
         print_r($bool);
     }
-
 
     /**
      * 邮件发送
@@ -99,7 +95,6 @@ class Send
         $emailObject,$toEmailObject,$subject,
         $msgHTML, $CCEmail=null,$BCCEmail=null,$files=null)
     {
-
         $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
         try {
             //Server settings 服务器设置
@@ -108,7 +103,6 @@ class Send
             # Set mailer to use SMTP 设置SMTP
             $mail->isSMTP();
             # Specify main and backup SMTP servers  设置SMTP 服务器地址
-//            var_dump($mail->getHost($emailObject['smtp_name']));die;
             $mail->Host = $mail->getHost($emailObject['smtp_name']);
             # Enable SMTP authentication  是否需要授权
             $mail->SMTPAuth = true;
@@ -118,8 +112,8 @@ class Send
             $mail->Password = $emailObject['password'];
             # 更改默认编码
             $mail->CharSet = 'utf-8';
-//            $mail->SMTPSecure = 'tls';      // Enable TLS encryption, `ssl` also accepted  加密方式
-//            $mail->Port = 587;              // TCP port to connect to  使用端口
+//            $mail->SMTPSecure = 'tls';      # Enable TLS encryption, `ssl` also accepted  加密方式
+//            $mail->Port = 587;              # TCP port to connect to  使用端口
 
             //Recipients请求
             # 设置email 地址，名称
@@ -162,7 +156,4 @@ class Send
             return ['status'=>'Mailer Error: ' . $mail->ErrorInfo]; #失败状态
         }
     }
-
-
-
 }
